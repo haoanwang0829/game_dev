@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://nkketgaw605d"]
+
+[ext_resource type="Script" path="res://enemy/now_enemies.gd" id="1_e6ft5"]
+
+[node name="now_enemies" type="Node2D"]
+script = ExtResource("1_e6ft5")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

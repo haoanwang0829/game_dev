@@ -1,0 +1,13 @@
+CollisionShape2D
+Area2D
+CharacterBody2D
+AnimatedSprite2D
+Timer
+AnimatedSprite3D
+AnimatableBody2D
+Marker2D
+Camera2D
+Button
+Sprite2D
+RigidBody2D
+TileMap

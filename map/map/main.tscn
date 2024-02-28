@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbb6pvb3tus0l"]
+
+[ext_resource type="Script" path="res://map/main.gd" id="1_gf07v"]
+[ext_resource type="TileSet" uid="uid://cu3q0884ewdks" path="res://map/main.tres" id="2_il4wg"]
+[ext_resource type="Script" path="res://map/TileMap.gd" id="3_5mofs"]
+[ext_resource type="Script" path="res://map/Camera2D.gd" id="4_qcwqb"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_gf07v")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_il4wg")
+format = 2
+layer_0/name = "terrain"
+layer_1/name = "swamp"
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "river"
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "river2"
+layer_3/tile_data = PackedInt32Array()
+script = ExtResource("3_5mofs")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("4_qcwqb")

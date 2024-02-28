@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0koo85kx286p"]
+
+[ext_resource type="Script" path="res://weapon/weapon.gd" id="1_jbnv5"]
+[ext_resource type="Texture2D" uid="uid://qw0e8ry4ovjd" path="res://asset/weapon/weapon1/weaponR1.png" id="1_rqumw"]
+[ext_resource type="Shader" path="res://weapon/godot_weapon.gdshader" id="2_n8efd"]
+[ext_resource type="Texture2D" uid="uid://yhw2nujvwksh" path="res://asset/bullet/muzzle.png" id="4_gaf0c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21e1a"]
+resource_local_to_scene = true
+shader = ExtResource("2_n8efd")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 20.0
+shader_parameter/pattern = 2
+shader_parameter/inside = true
+shader_parameter/add_margins = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qi8dm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rqumw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tmd32"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_gaf0c")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8umya"]
+radius = 319.056
+
+[node name="weapon" type="Node2D"]
+script = ExtResource("1_jbnv5")
+
+[node name="weaponAni" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_21e1a")
+scale = Vector2(0.0429688, 0.0429688)
+sprite_frames = SubResource("SpriteFrames_qi8dm")
+offset = Vector2(0, -397)
+
+[node name="shoot_position" type="Marker2D" parent="."]
+position = Vector2(32, 0)
+
+[node name="muzzle" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(36, -1.78814e-07)
+scale = Vector2(0.0053711, 0.0053711)
+sprite_frames = SubResource("SpriteFrames_tmd32")
+
+[node name="shoot_cd" type="Timer" parent="."]
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8umya")
+
+[node name="muzzle_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="shoot_cd" to="." method="_on_shoot_cd_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="muzzle_timer" to="." method="_on_muzzle_timer_timeout"]

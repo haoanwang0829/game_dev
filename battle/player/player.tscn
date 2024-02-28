@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://wjx1137bccxa"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_onx6d"]
+[ext_resource type="Texture2D" uid="uid://c776phj6kv0d4" path="res://asset/player/player1/walk/walk_0.png" id="2_niq72"]
+[ext_resource type="Texture2D" uid="uid://dgt3wxjo2fpv7" path="res://asset/player/player1/walk/walk_1.png" id="3_7ex7y"]
+[ext_resource type="Texture2D" uid="uid://bbawli7xp58gn" path="res://asset/player/player1/walk/walk_2.png" id="4_ja6v7"]
+[ext_resource type="Texture2D" uid="uid://ch2npmtn5ktpp" path="res://asset/player/player1/walk/walk_3.png" id="5_4ahot"]
+[ext_resource type="Texture2D" uid="uid://dxfwqd48ougky" path="res://asset/player/player1/walk/walk_4.png" id="6_gpb2s"]
+[ext_resource type="Texture2D" uid="uid://cds3iqs8sea1t" path="res://asset/player/player1/walk/walk_5.png" id="7_g3cyu"]
+[ext_resource type="Texture2D" uid="uid://d2hs0fkfu6ogs" path="res://asset/player/player1/walk/walk_6.png" id="8_4lddb"]
+[ext_resource type="Texture2D" uid="uid://d0h1uc07x450w" path="res://asset/player/player1/walk/walk_7.png" id="9_8vn11"]
+[ext_resource type="PackedScene" uid="uid://ba65pg6l62eff" path="res://weapon/now_weapons.tscn" id="10_ulyuk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c5nej"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_niq72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7ex7y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ja6v7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4ahot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gpb2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g3cyu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4lddb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8vn11")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_86k1k"]
+size = Vector2(46.5, 74)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdrqs"]
+radius = 227.014
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+z_index = 20
+scale = Vector2(2, 2)
+collision_mask = 3
+script = ExtResource("1_onx6d")
+
+[node name="playerAni" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_c5nej")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.797226
+offset = Vector2(0, -396)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_86k1k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="stop" type="Area2D" parent="."]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stop"]
+shape = SubResource("RectangleShape2D_86k1k")
+
+[node name="now_weapons" parent="." instance=ExtResource("10_ulyuk")]
+
+[node name="pick_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pick_area"]
+shape = SubResource("CircleShape2D_wdrqs")
+
+[connection signal="body_entered" from="stop" to="." method="_on_stop_body_entered"]
+[connection signal="mouse_entered" from="stop" to="." method="_on_stop_mouse_entered"]
+[connection signal="mouse_exited" from="stop" to="." method="_on_stop_mouse_exited"]
+[connection signal="body_entered" from="pick_area" to="." method="_on_pick_area_body_entered"]

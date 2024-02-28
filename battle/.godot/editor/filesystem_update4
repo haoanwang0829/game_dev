@@ -1,0 +1,12 @@
+res://player/player.tscn
+res://weapon/godot_weapon.gdshader
+res://enemy/flash.gdshader
+res://weapon/weapon.gdshader
+res://bg_map/bg_map.tscn
+res://bullet/bullet.tscn
+res://weapon/now_weapons.tscn
+res://weapon/weapon.tscn
+res://enemy/enemy.tscn
+res://enemy/now_enemies.tscn
+res://animations/animations.tscn
+res://drop_items/drop_items.tscn

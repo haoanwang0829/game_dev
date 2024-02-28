@@ -1,0 +1,15 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1709078967
+icon.svg::CompressedTexture2D::5163425387241106932::1706841441::1706841445::1::::<><>::
+::res://asset/::1709078956
+ice.png::CompressedTexture2D::2247505967106893859::1706999382::1709078748::1::::<><>::
+river.png::CompressedTexture2D::9160684510267446348::1707176410::1707176569::1::::<><>::
+river_start.png::CompressedTexture2D::3809990549858713724::1707177440::1707177440::1::::<><>::
+::res://asset/river/::1707168276
+::res://map/::1709078474
+Camera2D.gd::GDScript::-1::1706900812::0::1::::<>Camera2D<>::
+Cell_class.gd::GDScript::-1::1707186491::0::1::::Cell<>RefCounted<>::
+main.gd::GDScript::-1::1706930627::0::1::::<>Node2D<>::
+main.tres::TileSet::6235438719565350978::1709078887::0::1::::<><>::uid://btk5i2nlflxa7::::res://asset/ice.png<>uid://bujt8t1645dro::::res://asset/river_start.png<>uid://d3rreuvl73ths::::res://asset/river.png
+main.tscn::PackedScene::4847004708296175541::1709078013::0::1::::<><>::res://map/main.gd<>uid://cu3q0884ewdks::::res://map/main.tres<>res://map/TileMap.gd<>res://map/Camera2D.gd
+TileMap.gd::GDScript::-1::1707191989::0::1::::<>TileMap<>::

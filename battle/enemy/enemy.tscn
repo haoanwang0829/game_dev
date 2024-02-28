@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://dpt4vvwcyisjl"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_574fa"]
+[ext_resource type="Texture2D" uid="uid://bwax05qywy0al" path="res://asset/enemy/Acid Ooze/AcidOozeIdleSide.png" id="1_mivo4"]
+[ext_resource type="Shader" path="res://enemy/flash.gdshader" id="2_8kxbm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ifmp1"]
+resource_local_to_scene = true
+shader = ExtResource("2_8kxbm")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_opacity = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lufc"]
+atlas = ExtResource("1_mivo4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rqx8"]
+atlas = ExtResource("1_mivo4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkslm"]
+atlas = ExtResource("1_mivo4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fam8p"]
+atlas = ExtResource("1_mivo4")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g61wt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lufc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rqx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkslm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fam8p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5sojt"]
+radius = 7.25
+height = 18.0
+
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+z_index = 14
+scale = Vector2(4, 4)
+collision_layer = 8
+collision_mask = 10
+script = ExtResource("1_574fa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_ifmp1")
+sprite_frames = SubResource("SpriteFrames_g61wt")
+autoplay = "default"
+frame_progress = 0.197844
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5sojt")
